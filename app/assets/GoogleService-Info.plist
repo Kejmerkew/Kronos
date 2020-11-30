@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>786252421536-f7t3hmahbnb2gnb12booshak6hu9cr9j.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.786252421536-f7t3hmahbnb2gnb12booshak6hu9cr9j</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDotLoSPGR38qS6gWFi_FU-Ijhq4qaMK_4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>786252421536</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nitro.kronos</string>
+	<key>PROJECT_ID</key>
+	<string>kronos-fb949</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kronos-fb949.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:786252421536:ios:ba93b73f204843ca1aacc5</string>
+	<key>DATABASE_URL</key>
+	<string>https://kronos-fb949.firebaseio.com</string>
+</dict>
+</plist>

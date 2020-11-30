@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "786252421536",
+    "firebase_url": "https://kronos-fb949.firebaseio.com",
+    "project_id": "kronos-fb949",
+    "storage_bucket": "kronos-fb949.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786252421536:android:0055cf797abc50bd1aacc5",
+        "android_client_info": {
+          "package_name": "com.nitro.kronos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786252421536-guj3vetc6lc4jnvhb0ul9u1pr7vhah30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbeOdy62W_4d6LM_tdT0wRbIpqKBriW-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786252421536-guj3vetc6lc4jnvhb0ul9u1pr7vhah30.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "786252421536-f7t3hmahbnb2gnb12booshak6hu9cr9j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nitro.kronos"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
