@@ -30,13 +30,13 @@ const menuItems = [
 
 function AccountScreen({ navigation }) {
   const { User, setUser } = useContext(AuthContext);
+  const { masterKey, setMasterKey } = useContext(AuthContext);
 
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
           title={User}
-          subTitle="Email"
           IconComponent={<FontAwesome5 name="user-cog" size={30} />}
         />
       </View>
@@ -49,7 +49,10 @@ function AccountScreen({ navigation }) {
         <ListItem
           title="Log Out"
           IconComponent={<Icon name="logout" backgroundColor={colors.logout} />}
-          onPress={() => setUser(null)}
+          onPress={() => {
+            setMasterKey(null);
+            setUser(null);
+          }}
         />
       </View>
     </Screen>

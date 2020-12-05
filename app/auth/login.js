@@ -1,4 +1,5 @@
 import asyncApi from "../api/async";
+import Encrypt from "./encryption";
 
 const checkUserExists = async (key) => {
   const keys = await asyncApi.getAllKeys();
@@ -13,33 +14,42 @@ const checkUserExists = async (key) => {
 };
 
 const loginUser = async (userTyped) => {
-  let newUser = "";
+  let existingUser = "";
   const key = "@" + userTyped.username;
   const checkUser = await checkUserExists(key);
 
   if (checkUser == 1) {
     try {
-      newUser = await asyncApi.readItemFromStorage(key);
+      existingUser = await asyncApi.readItemFromStorage(key);
     } catch (error) {
       console.log("Login ERROR: ", error);
     }
 
-    //validate user
-    const validate = validateUser(userTyped, JSON.parse(newUser));
-    return validate;
+    existingUser = JSON.parse(existingUser);
+
+    const decryptedKey = Encrypt.encryptPBKDF2(
+      userTyped.username + userTyped.password
+    );
+    const decryptedUser = Encrypt.decryptAES(existingUser, decryptedKey);
+
+    if (decryptedUser) {
+      //validate user
+      const validate = validateUser(userTyped, decryptedUser);
+      return validate;
+    }
+
+    return false;
   }
 };
 
-const validateUser = (userTyped, newUser) => {
+const validateUser = (userTyped, existingUser) => {
   // console.log("Login VALUE: ", user.username);
   // console.log("LOGIN TYPED: ", userTyped.username);
 
-  if (userTyped.username == newUser.username) {
-    if (userTyped.password == newUser.password) {
-      return true;
-    } else {
-      return false;
-    }
+  if (userTyped.username + userTyped.password == existingUser) {
+    return true;
+  } else {
+    return false;
   }
 };
 

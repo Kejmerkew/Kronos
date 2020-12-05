@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Alert, StyleSheet } from "react-native";
 import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 import ActionButton from "react-native-action-button";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import colors from "../config/colors";
 import { Clipboard } from "react-native";
 import ListComponent from "../components/ListComponent";
 import Screen from "../components/Screen";
 import database from "../db/database";
+import AuthContext from "../auth/context";
 
 function ViewListingScreen({ route, navigation }) {
   const [showPass, setShowPass] = useState(true);
+  const { masterKey } = useContext(AuthContext);
   const listing = route.params;
   const ID = listing.id;
 
   const handleSubmit = (listing) => {
-    database.updateListing({ ...listing }, ID);
+    database.updateListing({ ...listing }, ID, masterKey);
 
     navigation.reset({
       index: 0,
@@ -53,27 +56,27 @@ function ViewListingScreen({ route, navigation }) {
   };
 
   const copyToClipboard = () => {
-    console.log(listing.password);
     Clipboard.setString(listing.password);
   };
 
   return (
     <Screen style={styles.screen}>
-      <ListComponent
-        initialValues={{
-          name: listing.name,
-          url: listing.url,
-          username: listing.username,
-          password: listing.password,
-          notes: listing.notes,
-        }}
-        onSubmit={handleSubmit}
-        text="View/Edit Password"
-        buttonColor="dark"
-        buttonTitle="Done"
-        secureTextEntry={showPass}
-      />
-
+      <KeyboardAwareScrollView>
+        <ListComponent
+          initialValues={{
+            name: listing.name,
+            url: listing.url,
+            username: listing.username,
+            password: listing.password,
+            notes: listing.notes,
+          }}
+          onSubmit={handleSubmit}
+          text="View/Edit Password"
+          buttonColor="dark"
+          buttonTitle="Done"
+          secureTextEntry={showPass}
+        />
+      </KeyboardAwareScrollView>
       <ActionButton
         autoInactive={false}
         buttonColor={colors.dark}

@@ -8,11 +8,13 @@ import Screen from "../components/Screen";
 import routes from "../navigation/routes";
 import database from "../db/database";
 import AuthContext from "../auth/context";
+import Encrypt from "../auth/encryption";
 
 function HomeScreen({ navigation }) {
   const { User } = useContext(AuthContext);
-  database.createDatabase("DB_" + User);
-  const data = database.getListings();
+  const { masterKey } = useContext(AuthContext);
+  database.createDatabase("DB_" + masterKey);
+  const data = database.getListings(masterKey);
 
   return (
     <Screen style={styles.screen}>

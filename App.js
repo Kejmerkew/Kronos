@@ -1,8 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { LogBox, StyleSheet, Text, View } from "react-native";
+import { LogBox } from "react-native";
 
-import ListComponent from "./app/components/ListComponent";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
@@ -10,13 +8,6 @@ import { navigationRef } from "./app/navigation/rootNavigation";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AuthContext from "./app/auth/context";
 
-import AccountScreen from "./app/screens/AccountScreen";
-import AddListScreen from "./app/screens/AddListScreen";
-import HomeScreen from "./app/screens/HomeScreen";
-import LoginScreen from "./app/screens/LoginScreen";
-import RegisterScreen from "./app/screens/RegisterScreen";
-import ViewListingScreen from "./app/screens/ViewListingScreen";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
 import { AppLoading } from "expo";
 
 LogBox.ignoreLogs([
@@ -29,10 +20,13 @@ LogBox.ignoreLogs([
 
 export default function App() {
   const [User, setUser] = useState();
+  const [masterKey, setMasterKey] = useState();
   const [isReady, setIsReady] = useState(false);
+  // asyncApi.clearAll();
 
   const restoreUser = async () => {
     if (User) setUser(User);
+    if (masterKey) setMasterKey(masterKey);
   };
 
   if (!isReady) {
@@ -42,7 +36,7 @@ export default function App() {
   }
 
   return (
-    <AuthContext.Provider value={{ User, setUser }}>
+    <AuthContext.Provider value={{ User, setUser, masterKey, setMasterKey }}>
       <NavigationContainer ref={navigationRef} theme={navigationTheme}>
         {User ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>

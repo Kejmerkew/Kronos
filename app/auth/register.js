@@ -1,4 +1,5 @@
 import asyncApi from "../api/async";
+import Encrypt from "../auth/encryption";
 
 const checkKeys = async (key) => {
   const keys = await asyncApi.getAllKeys();
@@ -16,18 +17,25 @@ const registerUser = async (newUser) => {
   const key = "@" + newUser.username;
   const check = await checkKeys(key);
 
-  //   asyncApi.clearAll();
+  const encryptedKey = Encrypt.encryptPBKDF2(
+    newUser.username + newUser.password
+  );
+  const encryptedUser = Encrypt.encryptAES(
+    newUser.username + newUser.password,
+    encryptedKey
+  );
 
   if (check == 0) {
     try {
-      await asyncApi.writeItemToStorage(key, JSON.stringify(newUser));
+      await asyncApi.writeItemToStorage(key, JSON.stringify(encryptedUser));
     } catch (error) {
       console.log("Register ERROR: ", error);
     }
 
     return true;
   } else if (check == 1) {
-    console.log("Username already exists!");
+    const error = "Username already exists!";
+    return error;
   }
 };
 

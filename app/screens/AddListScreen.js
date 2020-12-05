@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -6,6 +6,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Screen from "../components/Screen";
 import ListComponent from "../components/ListComponent";
 import database from "../db/database";
+import AuthContext from "../auth/context";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(1).label("Name"),
@@ -16,8 +17,10 @@ const validationSchema = Yup.object().shape({
 });
 
 function AddListScreen({ navigation }) {
+  const { masterKey } = useContext(AuthContext);
+
   const handleSubmit = (listing) => {
-    database.addListing({ ...listing });
+    database.addListing({ ...listing }, masterKey);
 
     navigation.reset({
       index: 0,
