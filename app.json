@@ -25,6 +25,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.kronos.kejmerkew",
+      "permissions": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
       "versionCode": 1
     },
     "web": {
