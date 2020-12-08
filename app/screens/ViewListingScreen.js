@@ -27,7 +27,7 @@ function ViewListingScreen({ route, navigation }) {
   };
 
   const handleDelete = () => {
-    console.log(listing);
+    // console.log(listing);
 
     Alert.alert(
       "Delete Password",
